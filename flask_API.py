@@ -4,10 +4,11 @@ from PIL import Image
 import base64
 from io import BytesIO, StringIO
 import re
+import os
 
 app = Flask(
     __name__,
-    static_folder='/build',
+    static_folder=os.getcwd() + '/build',
     static_url_path='/')
 CORS(app)
 

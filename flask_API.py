@@ -5,7 +5,7 @@ import base64
 from io import BytesIO, StringIO
 import re
 import os
-
+#Waitress NGINX Flask
 app = Flask(
     __name__,
     static_folder=os.getcwd() + '/build',
@@ -24,13 +24,9 @@ def upload():
         data = request.data.decode('utf-8')
         image_data = re.sub('^data:image/.+;base64,', '',
                             data)
-        print(image_data)
+        # print(image_data)
         image = Image.open(BytesIO(base64.b64decode(image_data)))
         SAVE_PATH = "image.png"
         IMG_FORMAT = "PNG"
         image.save(SAVE_PATH, IMG_FORMAT)
         return {"status": False}
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
